@@ -14,13 +14,13 @@ import luna.common.Bootstrap;
 * 2017年11月29日     GaoXing Chen      v1.0.0		  添加注释
  */
 public class App {
-	public static void main( String[] args ){
+    public static void main( String[] args ){
         Bootstrap bootstrap = new Bootstrap("conf/example.yml");
-		bootstrap.start();
+        bootstrap.start();
         Runtime.getRuntime().addShutdownHook(new Thread() {
             public void run() {
-               bootstrap.stop();
+                bootstrap.stop();
             }
         });
-	}
+    }
 }

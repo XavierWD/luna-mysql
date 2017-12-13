@@ -10,11 +10,11 @@ import java.util.Properties;
 public class DataSourceConfig implements Serializable {
     private static final long serialVersionUID = 1264890831040718463L;
 
-    private String            username;
-    private String            password;
-    private String            url;
-    private String            driver;
-    private Properties properties       = new Properties();
+    private String              username;
+    private String              password;
+    private String              url;
+    private String              driver;
+    private Properties          properties       = new Properties();
 
     public DataSourceConfig(String url, String username, String password, String driver){
         this.username = username;
