@@ -1,4 +1,4 @@
- #!/bin/bash
+#!/bin/bash
 
 base_dir=$(dirname $0)/..
 
