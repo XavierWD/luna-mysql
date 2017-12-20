@@ -5,7 +5,7 @@
 要求MySQL的每张表对应Kafka的一个topic，topic命名为schema_table，partition规则随意。luna-mysql会对每个topic用1个线程消费处理，执行分表逻辑以及入库。
 
 # 架构
-![kafka之后的架构]( http://on-img.com/chart_image/5a2e45bce4b00fd926b12c08.png)
+![kafka之后的架构]( https://github.com/sanguinar/luna-mysql/blob/master/luna.png)
 
 # 配置及说明
 请在conf下添加3个配置文件：example.yml, kafka_client_jass.conf, DingDing.yml
