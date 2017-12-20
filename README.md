@@ -2,7 +2,7 @@
 基于binlog的异步增量实现MySQL分库分表（kafka做数据源）
 
 # Kafka数据源
-要求MySQL的每张表对应Kafka的一个topic，topic命名为schema_table，partition规则随意。luna-mysql会对每个topic用1个线程消费处理，执行分表逻辑以及入库。
+要求MySQL的每张表对应Kafka的一个topic，topic命名为schema_table，partition规则随意。luna-mysql会对每个topic用1个线程消费处理，执行分表逻辑以及入库。关于Maxwell以及Kafka基本配置详见[Luna-es]
 
 # 架构
 ![kafka之后的架构]( ./luna.png)
@@ -121,4 +121,5 @@ nohup进程：
     bin/luna-mysql.sh -daemon conf/example.yml
 
 --------------------------------
-[Authentication using SASL]:https://docs.confluent.io/current/kafka/sasl.html "Authentication using SASL"    
+[Authentication using SASL]:https://docs.confluent.io/current/kafka/sasl.html "Authentication using SASL"
+[Luna-es]:https://github.com/sanguinar/luna-es "Luna-es"
