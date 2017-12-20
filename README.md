@@ -10,7 +10,7 @@
 # 配置及说明
 请在conf下添加3个配置文件：example.yml, kafka_client_jass.conf, DingDing.yml
 
-### example.yml
+### example.yml (Don't modify the indentation)
 
     NewKafka:
       topics:
