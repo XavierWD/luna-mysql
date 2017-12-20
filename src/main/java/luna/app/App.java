@@ -15,7 +15,11 @@ import luna.common.Bootstrap;
  */
 public class App {
     public static void main( String[] args ){
-        Bootstrap bootstrap = new Bootstrap("conf/example.yml");
+        String config = "conf/example.yml";
+        if(args.length==1){
+            config = args[0];
+        }
+        Bootstrap bootstrap = new Bootstrap(config);
         bootstrap.start();
         Runtime.getRuntime().addShutdownHook(new Thread() {
             public void run() {
