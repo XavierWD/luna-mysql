@@ -144,7 +144,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>luna.app.App</mainClass>
+							<mainClass>luna-mysql</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
