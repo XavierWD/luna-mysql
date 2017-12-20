@@ -77,13 +77,13 @@ public class Bootstrap extends AbstractLifeCycle{
         Properties props = new Properties();
         props.put("bootstrap.servers", inputConfigs.get("bootstrap.servers"));
         props.put("group.id", groupId);
+        props.put("enable.auto.commit", "false");
         props.put("key.deserializer", StringDeserializer.class.getName());
         props.put("value.deserializer", StringDeserializer.class.getName());
         props.put("max.partition.fetch.bytes",maxFetchByte);
         props.put("max.poll.records",maxPollRecords);
         props.put("security.protocol", "SASL_PLAINTEXT");
         props.put("sasl.mechanism", "PLAIN");
-        props.put("enable.auto.commit", "false");
 
         kafkaContext.setRetryTimes(retryTimes);
         kafkaContext.setRetryInterval(retryInterval);

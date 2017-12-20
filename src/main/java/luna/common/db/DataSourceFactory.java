@@ -18,11 +18,11 @@ public class DataSourceFactory extends AbstractLifeCycle{
     private LoadingCache<DataSourceConfig,DataSource>   dataSources;
 
     public void start() {
-        int cacheSize = 100;
+        int maxCacheSize = 100;
         int duration = 10;//minute
 
         dataSources = CacheBuilder.newBuilder()
-                .maximumSize(cacheSize)
+                .maximumSize(maxCacheSize)
                 .expireAfterAccess(duration, TimeUnit.MINUTES)
                 .removalListener(new RemovalListener<DataSourceConfig,DataSource>(){
                     public void onRemoval(RemovalNotification<DataSourceConfig,DataSource> removal){

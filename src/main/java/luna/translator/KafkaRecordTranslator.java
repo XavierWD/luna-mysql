@@ -1,6 +1,8 @@
 package luna.translator;
 
+import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Multimap;
 import luna.common.AbstractLifeCycle;
 import luna.common.context.MysqlContext;
 import luna.common.model.meta.ColumnMeta;
@@ -40,31 +42,43 @@ public class KafkaRecordTranslator extends AbstractLifeCycle implements Translat
 
 
     public void translate(final List<Map<String,Object>> records){
-        Map<SchemaTable,List<Record>> recordsBucket = new HashMap<>();
-        for(Map<String,Object> payload: records){
+        Multimap<SchemaTable,Record> recordsBucket= LinkedListMultimap.create();
+        for(Map<String,Object> payload:records){
             Record record=translateToRecord(payload);
             SchemaTable schemaTable = new SchemaTable(record.getSchema(),record.getTable());
-            if(recordsBucket.get(schemaTable)==null){
-                List<Record> recordsNew=Lists.newArrayList();
-                recordsNew.add(record);
-                recordsBucket.put(schemaTable,recordsNew);
-            }else{
-                recordsBucket.get(schemaTable).add(record);
-            }
+            recordsBucket.put(schemaTable,record);
         }
         long before = System.currentTimeMillis();
-        recordsBucket.forEach(((schemaTable, myRecords) -> {
-            mysqlApplier.applyBatch(myRecords,schemaTable);
-        }));
+        recordsBucket.asMap().forEach(((schemaTable, recordList) ->{
+            mysqlApplier.apply((List<Record>)recordList,schemaTable);
+        } ));
         long after = System.currentTimeMillis();
         timeLog.info("batch "+(after-before)+" "+records.size());
+//        Map<SchemaTable,List<Record>> recordsBucket = new HashMap<>();
+//        for(Map<String,Object> payload: records){
+//            Record record=translateToRecord(payload);
+//            SchemaTable schemaTable = new SchemaTable(record.getSchema(),record.getTable());
+//            if(recordsBucket.get(schemaTable)==null){
+//                List<Record> recordsNew=Lists.newArrayList();
+//                recordsNew.add(record);
+//                recordsBucket.put(schemaTable,recordsNew);
+//            }else{
+//                recordsBucket.get(schemaTable).add(record);
+//            }
+//        }
+//        long before = System.currentTimeMillis();
+//        recordsBucket.forEach(((schemaTable, myRecords) -> {
+//            mysqlApplier.apply(myRecords,schemaTable);
+//        }));
+//        long after = System.currentTimeMillis();
+//        timeLog.info("batch "+(after-before)+" "+records.size());
     }
 
     public void translateOneByOne(Map<String, Object> payload){
         Record record=translateToRecord(payload);
         String tableName = (String) payload.get("table");
         long before = System.currentTimeMillis();
-        mysqlApplier.apply(record);
+        mysqlApplier.applyOneByOne(record);
         long after = System.currentTimeMillis();
         timeLog.info(tableName+" " + after + " " + (after-before));
     }
