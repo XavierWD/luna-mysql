@@ -108,5 +108,17 @@ Kafka 使用SASL_PLAINTEXT权限模块：[Authentication using SASL]
     phonenumbers:
       - "xxxxxxxxxxx"
 
+# 启动
+
+建议mvn package后启动，默认conf/example.yml
+
+控制台调试：
+
+    bin/luna-mysql.sh conf/example.yml
+    
+nohup进程：
+
+    bin/luna-mysql.sh -daemon conf/example.yml
+
 --------------------------------
 [Authentication using SASL]:https://docs.confluent.io/current/kafka/sasl.html "Authentication using SASL"    
