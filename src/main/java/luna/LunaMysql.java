@@ -1,4 +1,4 @@
-package luna.app;
+package luna;
 
 import luna.common.Bootstrap;
 /**
@@ -13,7 +13,7 @@ import luna.common.Bootstrap;
 *---------------------------------------------------------*
 * 2017年11月29日     GaoXing Chen      v1.0.0		  添加注释
  */
-public class App {
+public class LunaMysql {
     public static void main( String[] args ){
         String config = "conf/example.yml";
         if(args.length==1){
