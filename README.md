@@ -4,6 +4,10 @@
 # Kafka数据源
 要求MySQL的每张表对应Kafka的一个topic，topic命名为schema_table，partition规则随意。luna-mysql会对每个topic用1个线程消费处理，执行分表逻辑以及入库。关于Maxwell以及Kafka基本配置详见[Luna-es]
 
+# 入库
+Sring JdbcTemplate :  [Sping JdbcTemplate javadoc]  
+Driud : [https://github.com/alibaba/druid]
+
 # 架构
 ![kafka之后的架构]( ./luna.png)
 
@@ -123,3 +127,5 @@ nohup进程：
 --------------------------------
 [Authentication using SASL]:https://docs.confluent.io/current/kafka/sasl.html "Authentication using SASL"
 [Luna-es]:https://github.com/sanguinar/luna "Luna-es"
+[https://github.com/alibaba/druid]:https://github.com/alibaba/druid
+[Sping JdbcTemplate javadoc]:https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/jdbc/core/JdbcTemplate.html
